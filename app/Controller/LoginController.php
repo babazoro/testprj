@@ -1,7 +1,10 @@
 <?php
 namespace app\Controller;
-
-class LoginController
+use AppController;
+class LoginController extends AppController
 {
+    public function login() //publicつける
+    {
+        echo "login";
+    }
 }
-

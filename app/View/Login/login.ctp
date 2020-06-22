@@ -6,9 +6,9 @@
 </head>
 <body>
 <h1>ユーザーログイン</h1>
-<form action= "/Login/main" method="post" accept-charst="utf-8">
-  ID:<input type="text" name="id"><br>
-  PASS:<input type="pass" name="pass">
+<form action= "login/result" method="post">
+  ID:<input type="text" name="id" required><br>
+  PASS:<input type="password" name="password" required>
   <input type="submit" value="ログイン"><br>
 </form>
 </body>

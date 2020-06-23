@@ -7,11 +7,11 @@ class MUser extends AppModel
 
     public function getData(){
         $sql = "SELECT * FROM m_user";
-//         $params = array(
-//             'id'=> $id
-//         );
         $data = $this->query($sql);
         return $data;
+
+//         $data = $this->m_user->find('all');
+//         return $data;
     }
 }
 

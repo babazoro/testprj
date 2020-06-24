@@ -5,13 +5,17 @@
 <title>result</title>
 </head>
 <body>
-ログイン結果<br>
-<!-- <p>
+<p>
 フォームから送られた値<br>
 ID:<?= $id;?><br>
 PASS:<?= $pass;?><br>
-</p> -->
+</p>
 
+<!-- <?= $msg;?><br>
+<?php foreach ($msg as $key => $value): ?><br>
+	<?= $key ?>
+	<?= $value ?><br>
+<?php endforeach; ?> -->
 <a href="/testprj/main">Mainへ</a>
 <a href="/testprj/login">ログアウト</a>
 </body>

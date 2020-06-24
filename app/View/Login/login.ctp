@@ -7,12 +7,11 @@
 <body>
 <h1>ユーザーログイン</h1>
 
-
+<!-- フォームヘルパーでフォームを作成 -->
 <?= $this->Form->create('login',array(
 	'type' => 'post',
 	'url' => 'result'
 ));?>
-
 ID:<?= $this->Form->text('ID');?>
 PASS:<?= $this->Form->password('PASS');?>
 <?= $this->Form->submit('ログイン'); ?>

@@ -1,9 +1,7 @@
 <?php
-// namespace app\Controller;
 
+App::uses('Controller', 'Controller');
 
 class AppController extends Controller
 {
 }
-
-?>

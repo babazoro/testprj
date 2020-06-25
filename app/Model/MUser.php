@@ -11,12 +11,12 @@ class MUser extends AppModel
         'ID' => array (
             'rule' => array('email'),
             'required' => true,
-            'message' => 'メールアドレスを入力してください'
+            'message' => 'IDはメールアドレスを入力してください'
         ),
         'PASS' => array (
             'rule' => 'alphaNumeric',
             'required' => true,
-            'message' => '必須入力の項目です'
+            'message' => 'PASSは必須入力の項目です'
         )
     );
 

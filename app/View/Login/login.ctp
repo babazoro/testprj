@@ -10,10 +10,20 @@
 <!-- フォームヘルパーでフォームを作成 -->
 <?= $this->Form->create('login',array(
 	'type' => 'post',
-	'url' => 'result'
+	'url' => 'login'
 ));?>
 ID:<?= $this->Form->text('ID');?>
+	<?php if (isset($idmsg)) { ?>
+		<?php foreach($idmsg as $value): ?>
+		      <p><?= $value; ?></p>
+		<?php endforeach; ?>
+	<?php } ?>
 PASS:<?= $this->Form->password('PASS');?>
+	<?php if (isset($passmsg)) { ?>
+		<?php foreach($passmsg as $value): ?>
+		      <p><?= $value; ?></p>
+		<?php endforeach; ?>
+	<?php } ?>
 <?= $this->Form->submit('ログイン'); ?>
 <?= $this->Form->end(); ?>
 
@@ -22,6 +32,8 @@ PASS:<?= $this->Form->password('PASS');?>
   PASS:<input type="password" name="password">
   <input type="submit" value="ログイン"><br>
 </form> -->
+
+<script type="text/javascript" src="js/jQuery-1.7.min.js"></script>
 </body>
 </html>
 

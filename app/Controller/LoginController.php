@@ -8,36 +8,41 @@ class LoginController extends AppController
 
     public function login()
     {
+        //postでアクセスされたらバリデーション処理
+        if($this->request->is('post')) {
+            //フォームに入力された値を取得
+            $data = $this->request->data('login');
+            $this->set('data', $data);
+            //MUerにフォームの値をset
+            $this->MUser->set($this->request->data('login'));
+
+            //バリデーションチェック
+                //バリデーションを満たしていればresultへ
+                if ($this->MUser->validates()) {
+                    $this->redirect('result');
+                } else {
+                    //満たしてなければエラーメッセージを表示
+                    $msg = $this->MUser->validationErrors;
+                    if(isset($msg['ID'])) {
+                        $idmsg = $msg['ID'];
+                        $this->set('idmsg', $idmsg);
+                    }
+                    if(isset($msg['PASS'])) {
+                        $passmsg = $msg['PASS'];
+                        $this->set('passmsg', $passmsg);
+                    }
+                }
+        }
     }
 
     public function result()
     {
-        //
-//         $data = $this->MUser->getData();
-//         $this->set('data', $data);
-//         var_dump($data);
-
-        //フォームに入力された値を取得
-        $id = $this->request->data('login.ID');
-        $pass = $this->request->data('login.PASS');
-        $this->set('id', $id);
-        $this->set('pass', $pass);
-
-        //MUerにフォームの値をset
-         $this->MUser->set($this->request->data('login'));
-
-        //バリデーションチェック
-        if ($this->MUser->validates()) {
-            $this->set('msg', 'OK');
-        } else {
-            $this->set('msg', $this->MUser->validationErrors);
-            var_dump($this->MUser->validationErrors);
-            return $this->render('login');
-        }
-
-        $MUser = $this->MUser->find('all');
+        $MUser = $this->MUser->find('all', array(
+            'conditions' => array('LOGIN_ID' => 'test')
+        ));
         $this->set('MUser',$MUser);
         //var_dump($MUser);
 
+        $this->set('msg', 'OK');
     }
 }

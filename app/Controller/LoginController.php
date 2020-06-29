@@ -13,6 +13,7 @@ class LoginController extends AppController
             //フォームに入力された値を取得
             $data = $this->request->data('login');
             $this->set('data', $data);
+
             //MUerにフォームの値をset
             $this->MUser->set($this->request->data('login'));
 
@@ -41,7 +42,10 @@ class LoginController extends AppController
             'conditions' => array('LOGIN_ID' => 'test')
         ));
         $this->set('MUser',$MUser);
-        //var_dump($MUser);
+        var_dump($MUser);
+
+
+
 
         $this->set('msg', 'OK');
     }

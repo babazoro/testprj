@@ -3,31 +3,29 @@ $(function(){
   $("h1").css('color','red');
 });
 
-
 function color() {
-	$("h1").css('color','blue');
+  $("h1").css('color','blue');
 }
 
-
 function testAjax() {
-	$.ajax({
+  $.ajax({
         url: "/testprj/main/test",
         type: "POST",
         success : function(response){
-        	var rows = "test";
-        	$('p').append(rows);
+          var rows = "test";
+          $('p').append(rows);
 
             alert(response);
         },
     });
 }
 
-
 //フォームの値をajaxで送信
 $(function(){
 
     $('button').click(function(event){
-
+      //初期化してから検索
+      $('td').remove();
         var $search = $('#search');
         var param = $search.serializeArray();
 
@@ -36,43 +34,32 @@ $(function(){
             type:'POST',
             data: param,
             success : function(response){
-//            	alert(response);
 
-//            	foreach ($data as $key => $value){
-//            	}
-//            	var json = $.parseJSON([
-//            			'{"NAME":"John"}',
-//            			'{"SYAIN_ID":"001"}',
-//            			'{"SEIBETSU":"男"}',
-//            			'{"BIRTHDAY":"1990/01/01"}']);
+            	//返ってきた値を変換
+            	var json = $.parseJSON(response);
 
-            	var NAME = $.parseJSON('{"NAME":"John"}');
-            	var SYAIN_ID = $.parseJSON('{"SYAIN_ID":"001"}');
-            	var SEIBETSU = $.parseJSON('{"SEIBETSU":"男"}');
-            	var BIRTHDAY = $.parseJSON('{"BIRTHDAY":"1990/01/01"}');
-            	var rows ="";
-            	rows += "<tr>";
-            	rows += "<td>";
-                rows += SYAIN_ID['SYAIN_ID'];
-                rows += "</td>";
-                rows += "<td>";
-                rows += NAME['NAME'];
-                rows += "</td>";
-                rows += "<td>";
-                rows += SEIBETSU['SEIBETSU'];
-                rows += "</td>";
-                rows += "<td>";
-                rows += BIRTHDAY['BIRTHDAY'];
-                rows += "</td>";
-                rows += "</tr>";
-                //テーブルに作成したhtmlを追加する
-                $('#table').append(rows);
-            },
+            	if(response == '0') {
+            		alert('キーワードを入力してください');
+            	} else if(response == '1') {
+            		alert("そのユーザーは存在しません");
+            	} else {
+	            	//値の数だけデータを出力
+	            	for(var i in json){
+	            		//テーブルにhtmlを追加する
+	                    $('#table').append(
+	                        "<tr>" + "<td>" + json[i].TSyain.SYAIN_ID + "</td>" +
+	                        "<td>" + json[i].TSyain.NAME + "</td>" +
+	                        "<td>" + json[i].TSyain.SEIBETSU + "</td>" +
+	                        "<td>" + json[i].TSyain.BIRTHDAY + "</td>" + "</tr>"
+	                    );
+	            	}
+            	}
+           },
+           //ajax通信ができなかったときにエラー
+            error: function(){
+                alert("エラー");
+              }
         })
     });
-});
-
-
-$(function(){
 });
 

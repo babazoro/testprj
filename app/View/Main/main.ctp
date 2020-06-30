@@ -5,12 +5,12 @@
 <title>main</title>
 </head>
 <body>
-
+<script type="text/javascript" src="js/jQuery-1.7.min.js"></script>
+<script type="text/javascript" src="js/test.js"></script>
 <h1>メイン画面</h1>
 
 <p>jQuery</p>
 
-<!-- <button onclick="testAjax();">sample</button><br> -->
 <?= $this->Form->create('search',['id'=>'search']);?>
 名前:<?= $this->Form->text('name');?>
 <!-- <?= $this->Form->button('検索',['id' => 'btn']); ?> -->
@@ -25,15 +25,8 @@
 		<th>性別(SEIBETSU)</th>
 		<th>誕生日(BIRTHDAY)</th>
 	</tr>
-
-
 </table>
 
-
 <a href="/testprj/login">ログアウト</a>
-
-<script type="text/javascript" src="js/jQuery-1.7.min.js"></script>
-<script type="text/javascript" src="js/test.js"></script>
-
 </body>
 </html>
